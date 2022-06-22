@@ -1,0 +1,70 @@
+---
+title: "Tidy Finance with R"
+author: "Christoph Scheuch, Stefan Voigt, Patrick Weiss"
+date: "June 23, 2022"
+output:
+  beamer_presentation:
+    latex_engine: xelatex
+  keep_tex: no
+theme: metropolis
+latex_engine: XeLateX
+slide_level: 2
+incremental: no
+fontsize: 11pt
+classoption: compress
+header-includes: |-
+  \metroset{progressbar=frametitle} 
+  \usepackage[round]{natbib} \usepackage{graphicx} 
+  \usepackage{booktabs} 
+  \usepackage{amsmath,amsfonts,amssymb} 
+  \usepackage{listings} 
+  \usepackage{xcolor} 
+  \definecolor{vgsfred}{RGB}{237,65,77} 
+  \definecolor{vgsfblack}{RGB}{50,50,50} 
+  \setbeamercolor{progress bar}{fg=vgsfred} 
+  \setbeamercolor{frametitle}{fg=vgsfblack,bg=white} 
+  \setbeamercolor{background canvas}{bg=white} 
+  \setbeamercolor{button}{bg=vgsfred,fg=white}
+  \usepackage{hyperref} 
+  \hypersetup{colorlinks=false}
+  \setbeamertemplate{itemize/enumerate body begin}{\footnotesize}
+---
+  
+```{r,setup, include=FALSE}
+options(scipen = 1, digits = 3) 
+
+knitr::opts_chunk$set(cache = FALSE,
+                      message = FALSE,
+                      fig.width = 8, 
+                      fig.height = 4, 
+                      fig.align = "center",
+                      out.width='60%', 
+                      fig.align='center', 
+                      size = "tiny")
+
+library(tidyverse)
+theme_set(theme_minimal() + theme(legend.position = "bottom")) 
+
+options(tibble.print_max = 4, 
+        tibble.print_min = 4,
+        digits = 3,
+        pillar.sigfig = 3)
+
+def.chunk.hook  <- knitr::knit_hooks$get("chunk")
+knitr::knit_hooks$set(chunk = function(x, options) {
+  x <- def.chunk.hook(x, options)
+  ifelse(options$size != "normalsize", paste0("\n \\", options$size,"\n\n", x, "\n\n \\normalsize"), x)
+})
+#knitr::include_graphics("figures/rollercoaster.jpg")
+
+```
+
+# Asset prices and returns
+
+## Asset prices and returns
+
+
+- Stock market returns
+- Diversification and risk management
+
+
