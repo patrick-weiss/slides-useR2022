@@ -1,0 +1,406 @@
+---
+title: "Tidy Finance with R"
+subtitle: "www.tidy-finance.org"
+author: "Christoph Scheuch, Stefan Voigt, Patrick Weiss"
+date: "June 23, 2022"
+output:
+  xaringan::moon_reader:
+    css: [useR, useR-fonts]
+    lib_dir: libs
+    yolo: false
+    nature:
+      slideNumberFormat: "%current%"
+      ratio: 16:9
+
+---
+class: chapter-slide
+
+
+```{r share-again, echo=FALSE}
+xaringanExtra::use_share_again()
+
+xaringanExtra::style_share_again(
+  share_buttons = c("twitter", "linkedin")
+)
+```
+
+```{r,setup, include=FALSE}
+library(metathis)
+meta() %>%
+  meta_general(
+    description = "Tidy Finance with R presentation at useR!2022.",
+    generator = "xaringan and remark.js"
+  ) %>% 
+  meta_name("github-repo" = "gadenbuie/drake-intro") %>% 
+  meta_social(
+    title = "Reproducible Data Workflows With Drake",
+    url = "https://www.tidy-finance.org",
+    image = "https://www.tidy-finance.org/cover.jpg",
+    image_alt = "The cover of Tidy Finance with R.",
+    og_type = "website",
+    og_author = "Patrick Weiss",
+    twitter_card_type = "summary_large_image",
+    twitter_creator = "@patrick_weiss"
+  )
+
+
+options(scipen = 1, digits = 3) 
+
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(
+  fig.retina = 2,
+  warning = FALSE,
+  message = FALSE
+)
+
+
+knitr::opts_chunk$set(cache = FALSE,
+                      message = FALSE,
+                      fig.width = 8, 
+                      fig.height = 4, 
+                      fig.align = "center",
+                      out.width='60%', 
+                      size = "tiny")
+
+library(tidyverse)
+theme_set(theme_minimal() + theme(legend.position = "bottom")) 
+
+options(tibble.print_max = 4, 
+        tibble.print_min = 4,
+        digits = 3,
+        pillar.sigfig = 3)
+
+# def.chunk.hook  <- knitr::knit_hooks$get("chunk")
+# knitr::knit_hooks$set(chunk = function(x, options) {
+#   x <- def.chunk.hook(x, options)
+#   ifelse(options$size != "normalsize", paste0("\n \\", options$size,"\n\n", x, "\n\n \\normalsize"), x)
+# })
+#knitr::include_graphics("figures/rollercoaster.jpg")
+
+```
+
+
+
+
+
+# What is 'Tidy Finance with R'?
+
+---
+
+## #TidyFinance started with three PhD students
+
+<center><img style="border-radius: 50%;" alt="Portrait of Christoph Scheuch" src="images/pic_christoph.jpg" width="200px"/> &emsp; &emsp; &emsp; <img style="border-radius: 50%;" alt="Portrait of Stefan Voigt" src="images/pic_stefan.jpg" width="200px"/>  &emsp; &emsp; &emsp; <img style="border-radius: 50%;" alt="Portrait of Patrick Weiss" src="images/pic_patrick.jpg" width="200px"/></center>
+
+#### &emsp; &ensp; &ensp; Christoph Scheuch &ensp; &emsp; &emsp; &emsp; Stefan Voigt &ensp; &emsp; &emsp; &emsp; &emsp; Patrick Weiss
+
+&nbsp;
+
+Studied together at the [Vienna Graduate School of Finance](https://www.vgsf.ac.at/).
+
+???
+
+A long, long time ago. Tidy Finance started out with three PhD students. Christoph, Stefan, and Patrick. At the time, they were at the Vienna Graduate School of Finance working hard to earn their finance degrees. 
+
+---
+
+### #TidyFinance is ...
+
+.pull-left[
+- ... a step towards **reproducible finance** by providing a fully transparent code base.
+
+- ... a resource for students, lecturers, and professionals using `R` for applications in finance.
+
+- ... a **tidy** approach to finance.
+
+- ... an open-source `{bookdown}` available at [tidy-finance.org](https://www.tidy-finance.org). 
+
+- ... adding **new chapters** and **revising existing chapters**.
+]
+
+.pull-right[
+<middle><center><img src="images/cover.jpg" alt="Cover image of 'Tidy Finance with R'. The figure reads Tidy Finance with R followed by the author's names; Christoph Scheuch, Stefan Voigt, and Patrick Weiss." width="400"/></center></middle>
+]
+
+???
+
+
+---
+class: chapter-slide
+
+# Who should read #TidyFinance?
+
+
+???
+
+---
+## The three target audiences of #TidyFinance 
+
+&nbsp;
+
+.middle[
+.pull-left[
+<span style="color:#1464b4; font-size:32pt; font-weight: bold">`r fontawesome::fa("graduation-cap")` Students</span>
+
+<span style="font-size:32pt; font-weight: bold">`r fontawesome::fa("chalkboard")` Instructors</span>
+
+<span style="font-size:32pt; font-weight: bold">`r fontawesome::fa("user-tie")` &hairsp; Professionals</span>
+
+]
+
+.pull-right[
+- Students from **undergraduate** and **graduate** programs in finance.
+
+- There is a potential for **self-studying** the content.
+
+- Each chapter provides **exercises** to check progress.
+
+- Reference for later stages in their professional careers.
+]
+] 
+
+???
+
+Students who want to acquire the basic tools required to conduct financial research ranging from undergrad to graduate level. The book's structure is simple enough such that the material is sufficient for self-study purposes.
+
+---
+## The three target audiences of #TidyFinance 
+
+&nbsp;
+
+.middle[
+.pull-left[
+<span style="font-size:32pt; font-weight: bold">`r fontawesome::fa("graduation-cap")` Students</span>
+
+<span style="color:#1464b4; font-size:32pt; font-weight: bold">`r fontawesome::fa("chalkboard")` Instructors</span>
+
+<span style="font-size:32pt; font-weight: bold">`r fontawesome::fa("user-tie")` &hairsp; Professionals</span>
+
+]
+
+.pull-right[
+- Lecturers who teach **empirical finance courses**, e.g., in asset pricing.
+
+- Can be used as the **main** or a **complimentary textbook**.
+
+- Possible to focus on **specific chapters**, e.g., factor selection with machine learning. 
+
+- All chapters are **self-contained**.
+]
+]
+
+???
+
+Instructors who look for materials to teach in empirical finance courses. We provide plenty of examples and (hopefully) intuitive explanations which can easily be adjusted or expanded.  
+
+Stefan uses it for teaching already.
+
+---
+## The three target audiences of #TidyFinance 
+
+&nbsp;
+
+.middle[
+.pull-left[
+<span style="font-size:32pt; font-weight: bold">`r fontawesome::fa("graduation-cap")` Students</span>
+
+<span style="font-size:32pt; font-weight: bold">`r fontawesome::fa("chalkboard")` Instructors</span>
+
+<span style="color:#1464b4; font-size:32pt; font-weight: bold">`r fontawesome::fa("user-tie")` &hairsp; Professionals</span>
+
+]
+
+.pull-right[
+- Data analysts or scientists, statisticians, and others working on **finance-related topics**.
+
+- Shortcuts to **financial data** providers.
+
+- Practical, easy-to-adapt **tools** to implement common tasks.
+]
+]
+
+???
+
+Data analysts or statisticians who work on issues pertaining to financial data and need practical tools to do so. 
+
+---
+## Background knowledge for #TidyFinance 
+
+&nbsp;
+
+.middle[
+.pull-left[
+<span style="font-size:32pt; font-weight: bold">`r fontawesome::fa("graduation-cap")` Students</span>
+
+<span style="font-size:32pt; font-weight: bold">`r fontawesome::fa("chalkboard")` Instructors</span>
+
+<span style="font-size:32pt; font-weight: bold">`r fontawesome::fa("user-tie")` &hairsp; Professionals</span>
+
+]
+
+.pull-right[
+.center[.middle[
+&nbsp;
+
+
+`r fontawesome::fa("r-project", fill = "steelblue", height = "4em")` &ensp; `r fontawesome::fa("arrows-alt-h", height = "4em")` &ensp; `r fontawesome::fa("comment-dollar", fill = "green", height = "4em")`
+]]
+
+]
+]
+
+???
+The finance crowd will benefit from our **tidy implementation**.
+
+The `R`-oriented person will appreciate our **finance background**, best practices, and **references**.
+
+The `R`-finance hybrid can take the best of both worlds from #TidyFinance.
+---
+class: chapter-slide
+
+# What is covered in #TidyFinance?
+
+---
+
+## #TidyFinance covers a variety of topics
+
+.pull-left[
+### Introduction
+  - Show #TidyFinance-approach
+  - **Yahoo!Finance** data 
+  - Portfolio choice
+  - **Efficient frontier**
+]
+
+.pull-right[
+### Financial data
+- **Tidy** data
+- Fama-French data 
+- Macroeconomic data
+- **WRDS** via `{RPostgres}`  
+- **CRSP**, **Compustat**
+- Database with `{RSQLite}`
+]
+
+---
+
+## #TidyFinance covers a variety of topics
+
+
+.pull-left[
+### Asset pricing 
+  - Beta estimation
+  - Parallelization with `{future}`
+  - **Portfolio sorts** 
+  - Replication of Fama-French 3-factors 
+  - **Fama-MacBeth** regressions
+  ]
+  
+.pull-right[
+### Machine learning
+  - Factor selection
+  - Option pricing
+  - Ridge, Lasso, random forests, neural networks, 
+  - `{tidymodels}`
+  - `{keras}`
+]
+  
+---
+
+## #TidyFinance covers a variety of topics
+
+.pull-left[
+### Portfolio optimization
+  - Parametric portfolio optimization
+  - **Performance evaluation**
+  - Constrained optimization
+  - Backtesting
+]
+
+.pull-right[
+### And more
+ - Do you have further **suggestions**?
+]
+
+---
+
+## #TidyFinance covers a variety of topics
+
+
+- Introduction
+  - Show #TidyFinance-approach, **Yahoo!Finance** data, portfolio choice, **efficient frontier**
+- Financial data
+  - **Tidy** data, Fama-French data, macroeconomic data, **WRDS** via `{RPostgres}`,  **CRSP**, **Compustat**, database and `{RSQLite}`
+- Asset pricing 
+  - Beta estimation, parallelization with `{future}`, **portfolio sorts**, CAPM, FF3, **Fama-MacBeth** regressions
+- Modeling & machine learning
+  - Factor selection, option pricing, Ridge, Lasso, random forests, neural networks, `{tidymodels}`, `{keras}`
+- Portfolio optimization
+  - Parametric portfolio optimization, **performance evaluation**, constrained optimization, backtesting
+  
+---
+class: chapter-slide
+
+# Why `R`? Why `{Tidyverse}`?
+
+---
+class: middle
+
+.pull-left[
+### `R` is among the best choices for finance programming.
+
+- Free, open-source software with a diverse, active **community**.
+
+- Actively-maintained **packages** for all kinds of applications.
+
+- Smooth integration with other **programming languages**.
+
+- **RStudio** `r fontawesome::fa("heart", height = "1em", fill = "steelblue")`
+]
+
+
+.pull-right[
+### `{Tidyverse}` is the way for data analysis.
+
+- Messy data cause pain. **Tidy data** cause joy.
+
+- Compose simple functions with the **pipe**.
+
+- Designed for **humans**.
+
+- **Consistent** across packages.
+]
+
+---
+class: chapter-slide
+
+# Final remarks
+
+---
+.center[## #TidyFinance will be published.]
+
+&nbsp;
+
+.pull-left[
+
+- We signed a contract with **CRC Press**.
+
+- Expected to be published in the CRC **R Series** in 2023.
+
+- [tidy-finance.org](https://www.tidy-finance.org) will remain **free** and up-to-date.
+
+]
+
+.pull-right[
+
+<middle><center><img src="images/signed_contract.jpg" alt="A partial view of the first page fo a contract with a pen." width="600"/></center></middle>
+
+]
+
+---
+class: middle, center
+
+### Reach out with comments, questions, or <br> suggestions: `r fontawesome::fa("envelope", height = "1em", fill = "blue")`[contact@tidy-finance.org](mailto:contact@tidy-finance.org) 
+
+&nbsp;
+
+## `r fontawesome::fa("arrow-alt-circle-right")` visit [tidy-finance.org](https://www.tidy-finance.org)
