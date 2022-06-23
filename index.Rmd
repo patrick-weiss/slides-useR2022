@@ -106,13 +106,13 @@ A long, long time ago. Tidy Finance started out with three PhD students. Christo
 ### #TidyFinance is ...
 
 .pull-left[
+- ... an open-source `{bookdown}` available at [tidy-finance.org](https://www.tidy-finance.org). 
+
 - ... a step towards **reproducible finance** by providing a fully transparent code base.
 
 - ... a resource for students, lecturers, and professionals using `R` for applications in finance.
 
 - ... a **tidy** approach to finance.
-
-- ... an open-source `{bookdown}` available at [tidy-finance.org](https://www.tidy-finance.org). 
 
 - ... adding **new chapters** and **revising existing chapters**.
 ]
