@@ -376,14 +376,17 @@ class: chapter-slide
 
 .pull-right[
 
-<middle><center><img src="images/signed_contract.jpg" alt="A partial view of the first page fo a contract with a pen." width="600"/></center></middle>
+<middle><center><img src="images/signed_contract.jpg" alt="A partial view of the first page fo a contract with a pen." width="600" height="320"/></center></middle>
 
 ]
 
 ---
-class: middle, center
+class: middle, left
+background-image: url("images/cover.jpg")
+background-position: right
+background-size: 400px
 
-### Reach out with comments, questions, or <br> suggestions: `r fontawesome::fa("envelope", height = "1em", fill = "blue")`[contact@tidy-finance.org](mailto:contact@tidy-finance.org) 
+### Reach out with comments, questions, or <br> suggestions: `r fontawesome::fa("envelope", height = "1em", fill = "blue")` [contact@tidy-finance.org](mailto:contact@tidy-finance.org) 
 
 &nbsp;
 
