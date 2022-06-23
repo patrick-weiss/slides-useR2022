@@ -376,7 +376,7 @@ class: chapter-slide
 
 .pull-right[
 
-<middle><center><img src="images/signed_contract.jpg" alt="A partial view of the first page fo a contract with a pen." width="600" height="300"/></center></middle>
+<middle><center><img src="images/signed_contract.jpg" alt="A partial view of the first page fo a contract with a pen." width="520" height="300"/></center></middle>
 
 ]
 
