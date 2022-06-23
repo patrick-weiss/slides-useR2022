@@ -31,9 +31,9 @@ meta() %>%
     description = "Tidy Finance with R presentation at useR!2022.",
     generator = "xaringan and remark.js"
   ) %>% 
-  meta_name("github-repo" = "gadenbuie/drake-intro") %>% 
+  meta_name("github-repo" = "patrick-weiss/slides-useR2022") %>% 
   meta_social(
-    title = "Reproducible Data Workflows With Drake",
+    title = "Tidy Finance with R presentation at useR!2022.",
     url = "https://www.tidy-finance.org",
     image = "https://www.tidy-finance.org/cover.jpg",
     image_alt = "The cover of Tidy Finance with R.",
