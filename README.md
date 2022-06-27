@@ -2,7 +2,6 @@
 
 Talk on **Tidy Finance with R**:
 
-- Slides: https://patrick-weiss.github.io/slides-useR2022/.
-
-
-Read the book at https://www.tidy-finance.org/.
+- Slides: https://patrick-weiss.github.io/slides-useR2022/
+- Talk: follows soon.
+- Read the book at https://www.tidy-finance.org/
