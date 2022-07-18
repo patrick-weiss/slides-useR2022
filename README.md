@@ -1,4 +1,4 @@
-# Presentation @ [useR2022](https://user2022.r-project.org/) <img class="logo" src="https://www.tidy-finance.org/cover.jpg" align="right" style="width:250px;" />
+# Presentation @ [useR2022](https://user2022.r-project.org/) [<img class="logo" src="https://www.tidy-finance.org/cover.jpg" align="right" style="width:250px;" />](https://www.tidy-finance.org)
 
 Talk on **Tidy Finance with R**:
 
